@@ -12,15 +12,20 @@ class Typeable: public Floatable {
     public:
     Typeable();
     Typeable(const std::string& text, float x = 0, float y = 0);
+    static void setTextColor(const sf::Color& color);
+    static void setTextTypedColor(const sf::Color& color);
+    static void setTextDoneColor(const sf::Color& color);
+    static void setFontSize(unsigned int size);
     void setPosition(float x, float y) override;
+    void centerHorizontally(const sf::RenderWindow& window);
     void checkTyping();
 
     private:
     static const std::map<char, sf::Keyboard::Key> keys;
-    static const sf::Color textColor;
-    static const sf::Color textTypedColor;
-    static const sf::Color textDoneColor;
-    static const unsigned int fontSize = 32;
+    static sf::Color textColor;
+    static sf::Color textTypedColor;
+    static sf::Color textDoneColor;
+    static unsigned int fontSize;
     std::string text;
     Text baseText;
     Text typedText;

@@ -29,9 +29,10 @@ const std::map<char, sf::Keyboard::Key> Typeable::keys = {
     {'.', sf::Keyboard::Period}, {'!', sf::Keyboard::Num1}, {'-', sf::Keyboard::Dash}
 };
 
-const sf::Color Typeable::textColor = sf::Color(255, 255, 255);
-const sf::Color Typeable::textTypedColor = sf::Color(0, 0, 255);
-const sf::Color Typeable::textDoneColor = sf::Color(255, 255, 0);
+sf::Color Typeable::textColor = sf::Color(255, 255, 255);
+sf::Color Typeable::textTypedColor = sf::Color(0, 0, 255);
+sf::Color Typeable::textDoneColor = sf::Color(255, 255, 0);
+unsigned int Typeable::fontSize = 32;
 
 Typeable::Typeable() {
     this->text = "";
@@ -53,10 +54,31 @@ Typeable::Typeable(const std::string& text, float x, float y) : Floatable(x, y) 
     typedText = Text("", x, y, Typeable::textTypedColor, Typeable::fontSize);
 }
 
+void Typeable::setTextColor(const sf::Color& color) {
+    Typeable::textColor = color;
+}
+
+void Typeable::setTextTypedColor(const sf::Color& color) {
+    Typeable::textTypedColor = color;
+}
+
+void Typeable::setTextDoneColor(const sf::Color& color) {
+    Typeable::textDoneColor = color;
+}
+
+void Typeable::setFontSize(unsigned int size) {
+    Typeable::fontSize = size;
+}
+
 void Typeable::setPosition(float x, float y) {
     Floatable::setPosition(x, y);
     baseText.setPosition(x, y);
     typedText.setPosition(x, y);
+}
+
+void Typeable::centerHorizontally(const sf::RenderWindow& window) {
+    float x = baseText.centerHorizontally(window);
+    this->setPosition(x, this->y);
 }
 
 void Typeable::checkTyping() {

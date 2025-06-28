@@ -8,7 +8,7 @@
 
 class Menu {
     public:
-    Menu(const std::string &playText, const std::string &exitText, const std::string &instructionsText, const sf::RenderWindow &window);
+    Menu(const sf::RenderWindow &window);
     void update(sf::Event &e);
     void draw(sf::RenderWindow &window);
 

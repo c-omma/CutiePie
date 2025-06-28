@@ -47,6 +47,14 @@ void Text::setContent(const std::string& text) {
     displayText.setString(text);
 }
 
+float Text::centerHorizontally(const sf::RenderWindow& window) {
+    float textWidth = displayText.getLocalBounds().width;
+    float positionX = (window.getSize().x - textWidth) / 2;
+    displayText.setPosition(positionX, displayText.getPosition().y);
+
+    return positionX;
+}
+
 void Text::draw(sf::RenderWindow& window) {
     window.draw(displayText);
 }

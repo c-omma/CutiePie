@@ -10,6 +10,7 @@ class Text {
     Text(const std::string& text, float x = 0, float y = 0, sf::Color color = sf::Color::White, unsigned int size = 30);
     void setPosition(float x, float y);
     void setContent(const std::string& text);
+    float centerHorizontally(const sf::RenderWindow& window);
     void draw(sf::RenderWindow& window);
 
     private:
