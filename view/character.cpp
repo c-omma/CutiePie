@@ -1,7 +1,7 @@
 #include "character.h"
 
-Character::Character(float x, float y, const std::vector<std::vector<std::string>> &frames, const std::vector<unsigned int> frameSpeeds, bool isFloating)
-    : Floatable(x, y, isFloating) {
+Character::Character(float x, float y, const std::vector<std::vector<std::string>> &frames, const std::vector<unsigned int> frameSpeeds, float dx, float dy, bool isFloating)
+    : Floatable(x, y, isFloating), dx(dx), dy(dy) {
     for (int i = 0; i < (int)frames.size(); i++) {
         auto frameSet = frames[i];
         if (!frameSet.empty()) {
@@ -26,6 +26,10 @@ void Character::update(sf::Event &e) {
 }
 
 void Character::drawFloatable(sf::RenderWindow& window) {
+    printf("%f %f %f %f\n", x, y, dx, dy);
+    x += dx;
+    y += dy;
+    sprites[currentSpriteIndex].setPosition(x, y);
     sprites[currentSpriteIndex].draw(window);
 }
 

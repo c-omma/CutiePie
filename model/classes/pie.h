@@ -2,6 +2,7 @@
 #define PIE_H
 
 #include <SFML/Graphics.hpp>
+#include <cmath>
 #include <vector>
 #include <string>
 

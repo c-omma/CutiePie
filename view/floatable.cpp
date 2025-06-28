@@ -8,13 +8,7 @@ Floatable::Floatable(float x, float y, bool isFloating) : x(x), y(y), isFloating
 
 void Floatable::setPosition(float x, float y) {
     this->x = x;
-    this->y = y;
-
-    /* reset animation */
     this->baseY = y;
-    this->floatOffset = 0;
-    this->frameCounter = 0;
-    this->floatingUp = true;
 }
 
 void Floatable::setFloating(bool floating) {

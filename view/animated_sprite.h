@@ -10,6 +10,7 @@ class AnimatedSprite {
     AnimatedSprite(unsigned int frameSpeed, const std::vector<std::string> &frameFiles, float x = 0, float y = 0);
     void addFrame(const sf::Texture& texture);
     void setPosition(float x, float y);
+    sf::Sprite& getSprite() { return sprite; }
     void draw(sf::RenderWindow& window);
 
     private:

@@ -13,15 +13,18 @@ Pie::Pie(float x, float y) : Character(x, y, frames, frameSpeeds, false) {
 }
 
 void Pie::updateSprite(sf::Event &e) {
-    if (e.type == sf::Event::MouseButtonPressed) {
-        if (e.mouseButton.button == sf::Mouse::Left) {
-            if (e.mouseButton.x < x) {
-                this->setFloating(true);
-                currentSpriteIndex = 2;
-            } else {
-                this->setFloating(true);
-                currentSpriteIndex = 3;
-            }
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+        dx = e.mouseButton.x + sprites[0].getSprite().getGlobalBounds().width / 2 - this->x;
+        dy = e.mouseButton.y + sprites[0].getSprite().getGlobalBounds().height / 2 - this->y;
+        dx /= 100;
+        dy /= 100;
+        if (dx < 0) {
+            currentSpriteIndex = 2;
+        } else {
+            currentSpriteIndex = 3;
         }
+    } else {
+        dx = 0;
+        dy = 0;
     }
 }

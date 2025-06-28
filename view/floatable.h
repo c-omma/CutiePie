@@ -18,6 +18,7 @@ class Floatable {
     virtual void drawFloatable(sf::RenderWindow& window) = 0;
     float x;
     float y;
+    float baseY;
 
     private:
     bool isFloating;
@@ -26,7 +27,6 @@ class Floatable {
     static const float floatAmplitude;
     unsigned int frameCounter;
     bool floatingUp;
-    float baseY;
     float floatOffset;
 };
 
