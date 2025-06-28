@@ -21,7 +21,7 @@ class Typeable: public Floatable {
     static const sf::Color textDoneColor;
     static const unsigned int fontSize = 32;
     std::string text;
-    Text displayText;
+    Text baseText;
     Text typedText;
     unsigned int currentIndex = 0;
     bool done = false;

@@ -38,20 +38,20 @@ Typeable::Typeable(const std::string& text, float x, float y) : Floatable(x, y) 
     this->done = false;
     this->currentIndex = 0;
 
-    displayText = Text(text, Typeable::textColor, Typeable::fontSize, x, y);
+    baseText = Text(text, Typeable::textColor, Typeable::fontSize, x, y);
     typedText = Text("", Typeable::textTypedColor, Typeable::fontSize, x, y);
 }
 
 void Typeable::setPosition(float x, float y) {
     Floatable::setPosition(x, y);
-    displayText.setPosition(x, y);
+    baseText.setPosition(x, y);
     typedText.setPosition(x, y);
 }
 
 void Typeable::checkTyping() {
     if (currentIndex >= text.size()) {
         if (!done) done = true;
-        displayText = Text(text, Typeable::textDoneColor, Typeable::fontSize, this->x, this->y);
+        baseText = Text(text, Typeable::textDoneColor, Typeable::fontSize, this->x, this->y);
         return;
     }
 
@@ -64,9 +64,9 @@ void Typeable::checkTyping() {
 }
 
 void Typeable::drawFloatable(sf::RenderWindow &window) {
-    displayText.setPosition(x, y);
+    baseText.setPosition(x, y);
     typedText.setPosition(x, y);
-    displayText.draw(window);
+    baseText.draw(window);
 
     if (done) return;
     typedText.draw(window);
