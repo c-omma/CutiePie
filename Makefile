@@ -7,7 +7,7 @@ SOURCES = 	main.cpp \
 			controller/game.cpp controller/menu_state.cpp \
 			model/classes/typeable.cpp \
 			model/states/menu.cpp \
-			view/floatable.cpp view/text.cpp
+			view/background.cpp view/floatable.cpp view/text.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(TARGET)

@@ -20,7 +20,7 @@ Text::Text() {
     displayText.setPosition(0, 0);
 }
 
-Text::Text(const std::string& text, sf::Color color, unsigned int size, float x, float y) {
+Text::Text(const std::string& text, float x, float y, sf::Color color, unsigned int size) {
     static bool fontLoaded = false;
     if (!fontLoaded) {
         if (!Text::font.loadFromFile("assets/classOf74.ttf")) {

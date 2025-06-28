@@ -1,7 +1,8 @@
 #include "game.h"
 
-Game::Game() : state(new MenuState()), level(0) {
+Game::Game() : level(0) {
     window.create(sf::VideoMode({1920, 1080}), "CutiePie", sf::Style::Close | sf::Style::Titlebar);
+    state = new MenuState(window);
 }
 
 Game::~Game() {
