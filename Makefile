@@ -3,7 +3,7 @@ CXXFLAGS = -std=c++17 -Wall -Wextra
 LIBS = -lsfml-graphics -lsfml-window -lsfml-system
 
 TARGET = cutie
-SOURCES = main.cpp
+SOURCES = main.cpp game/typeable.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(TARGET)
