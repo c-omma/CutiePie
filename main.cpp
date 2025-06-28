@@ -3,34 +3,23 @@
 #include <iostream>
 
 #include "utils.h"
+#include "controller/game.h"
 #include "model/typeable.h"
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode({1920, 1080}), "CutiePie", sf::Style::Close | sf::Style::Titlebar);
-
-    Typeable hello("hello, world", 700, 200);
+    Game game;
 
     sf::Clock clock;
     const sf::Time frameTime = sf::seconds(FRAME_TIME);
 
     /* game loop */
-    while (window.isOpen()) {
-        sf::Event e;
-            
-        /* handle events */
-        while (window.pollEvent(e)) {
-            if (e.type == e.Closed) window.close();
-            
-            hello.checkTyping();
-        }
-
-        /* update view */
+    while (game.isRunning()) {        
+        game.update();
         if (clock.getElapsedTime() >= frameTime) {
-            window.clear();
-            hello.draw(window);
-            window.display();
-            
+            game.draw();
             clock.restart();
         }
     }
+
+    game.quit();
 }

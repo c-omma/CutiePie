@@ -10,6 +10,7 @@
 
 class Typeable: public Floatable {
     public:
+    Typeable();
     Typeable(const std::string& text, float x = 0, float y = 0);
     void setPosition(float x, float y) override;
     void checkTyping();
