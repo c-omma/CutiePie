@@ -24,6 +24,7 @@ class Typeable {
     static const sf::Color textColor;
     static const sf::Color textTypedColor;
     static const sf::Color textDoneColor;
+    static const unsigned int fontSize = 32;
     sf::Text displayText;
     std::string text;
     unsigned int currentIndex = 0;

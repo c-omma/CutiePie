@@ -6,7 +6,7 @@
 int main() {
     sf::RenderWindow window(sf::VideoMode({1920, 1080}), "CutiePie", sf::Style::Close | sf::Style::Titlebar);
 
-    Typeable hello("Hello, World!");
+    Typeable hello("Hello, World!", 700, 200);
 
     while (window.isOpen()) {
         sf::Event e;

@@ -50,7 +50,7 @@ Typeable::Typeable(const std::string& text, float x, float y) {
 
     this->displayText.setFont(Typeable::font);
     this->displayText.setString(text);
-    this->displayText.setCharacterSize(24);
+    this->displayText.setCharacterSize(Typeable::fontSize);
     this->displayText.setFillColor(Typeable::textColor);
     this->displayText.setPosition(x, y);
 }
@@ -82,11 +82,11 @@ void Typeable::draw(sf::RenderWindow& window) const {
         window.draw(displayText);
         return;
     }
-    
+
     sf::Text typedText;
     typedText.setFont(Typeable::font);
     typedText.setString(text.substr(0, currentIndex));
-    typedText.setCharacterSize(24);
+    typedText.setCharacterSize(Typeable::fontSize);
     typedText.setPosition(x, y);
     typedText.setFillColor(Typeable::textTypedColor);
     window.draw(displayText);
