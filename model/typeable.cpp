@@ -29,8 +29,6 @@ const std::map<char, sf::Keyboard::Key> Typeable::keys = {
     {'.', sf::Keyboard::Period}, {'!', sf::Keyboard::Num1}, {'-', sf::Keyboard::Dash}
 };
 
-sf::Font Typeable::font;
-
 const sf::Color Typeable::textColor = sf::Color(255, 255, 255);
 const sf::Color Typeable::textTypedColor = sf::Color(0, 0, 255);
 const sf::Color Typeable::textDoneColor = sf::Color(255, 255, 0);
@@ -40,62 +38,36 @@ Typeable::Typeable(const std::string& text, float x, float y) : Floatable(x, y) 
     this->done = false;
     this->currentIndex = 0;
 
-    static bool fontLoaded = false;
-    if (!fontLoaded) {
-        if (!Typeable::font.loadFromFile("assets/classOf74.ttf")) {
-            throw std::runtime_error("Typeable: Failed to load font");
-        }
-        fontLoaded = true;
-    }
-
-    this->displayText.setFont(Typeable::font);
-    this->displayText.setString(text);
-    this->displayText.setCharacterSize(Typeable::fontSize);
-    this->displayText.setFillColor(Typeable::textColor);
-    this->displayText.setPosition(x, y);
-
-    this->typedText.setFont(Typeable::font);
-    this->typedText.setCharacterSize(Typeable::fontSize);
-    this->typedText.setFillColor(Typeable::textTypedColor);
-    this->typedText.setPosition(x, y);
-}
-
-std::string Typeable::getText() const {
-    return text;
-}
-
-void Typeable::setText(const std::string& text) {
-    this->text = text;
-    this->currentIndex = 0;
-    this->displayText.setString(text);
+    displayText = Text(text, Typeable::textColor, Typeable::fontSize, x, y);
+    typedText = Text("", Typeable::textTypedColor, Typeable::fontSize, x, y);
 }
 
 void Typeable::setPosition(float x, float y) {
     Floatable::setPosition(x, y);
-    this->displayText.setPosition(x, y);
-    this->typedText.setPosition(x, y);
+    displayText.setPosition(x, y);
+    typedText.setPosition(x, y);
 }
 
 void Typeable::checkTyping() {
     if (currentIndex >= text.size()) {
         if (!done) done = true;
-        this->displayText.setFillColor(Typeable::textDoneColor);
+        displayText = Text(text, Typeable::textDoneColor, Typeable::fontSize, this->x, this->y);
         return;
     }
 
     auto it = Typeable::keys.find(text[currentIndex]);
     if (it == Typeable::keys.end()) return;
     if (sf::Keyboard::isKeyPressed(it->second)) {
-        this->typedText.setString(text.substr(0, currentIndex + 1));
+        typedText.setContent(text.substr(0, currentIndex + 1));
         currentIndex++;
     }
 }
 
 void Typeable::drawFloatable(sf::RenderWindow &window) {
-    this->displayText.setPosition(this->x, this->y);
-    this->typedText.setPosition(this->x, this->y);
-    window.draw(this->displayText);
-    
-    if (this->done) return;
-    window.draw(this->typedText);
+    displayText.setPosition(x, y);
+    typedText.setPosition(x, y);
+    displayText.draw(window);
+
+    if (done) return;
+    typedText.draw(window);
 }
