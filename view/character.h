@@ -13,9 +13,9 @@ class Character : public Floatable {
     Character(float x, float y, const std::vector<std::vector<std::string>> &frames, const std::vector<unsigned int> frameSpeeds, bool isFloating = false);
     void setPosition(float x, float y) override;
     virtual void update();
-    void drawFloatable(sf::RenderWindow& window) override;
-
+    
     protected:
+    void drawFloatable(sf::RenderWindow& window) override;
     virtual void updateSprite() = 0;
     std::vector<AnimatedSprite> sprites;
     unsigned int currentSpriteIndex = 0;

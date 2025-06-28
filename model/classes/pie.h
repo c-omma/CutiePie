@@ -10,11 +10,11 @@
 class Pie : public Character {
     public:
     Pie(float x = 0, float y = 0);
-    void updateSprite() override;
 
     private:
     static std::vector<std::vector<std::string>> frames;
     static std::vector<unsigned int> frameSpeeds;
+    void updateSprite() override;
 };
 
 #endif // PIE_H

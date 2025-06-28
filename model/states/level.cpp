@@ -9,12 +9,15 @@ Level::Level(const sf::RenderWindow &window, unsigned int number) : number(numbe
     Typeable typeable1("Words are cool!", 0, 500);
     typeable1.centerHorizontally(window);
     typeables.push_back(typeable1);
+
+    pie = Pie(100, 100);
 }
 
 void Level::update(sf::Event &e) {
     for (auto &typeable : typeables) {
         typeable.checkTyping();
     }
+    pie.update();
 }
 
 void Level::draw(sf::RenderWindow &window) {
@@ -22,4 +25,5 @@ void Level::draw(sf::RenderWindow &window) {
     for (auto &typeable : typeables) {
         typeable.draw(window);
     }
+    pie.draw(window);
 }

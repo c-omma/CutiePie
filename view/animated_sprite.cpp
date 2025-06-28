@@ -12,6 +12,7 @@ AnimatedSprite::AnimatedSprite(unsigned int frameSpeed, const std::vector<std::s
     }
     if (!frames.empty()) {
         sprite.setTexture(frames[0]);
+        sprite.scale(0.2f, 0.2f);
     } else {
         throw std::runtime_error("AnimatedSprite: No frames loaded");
     }

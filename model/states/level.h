@@ -2,8 +2,10 @@
 #define LEVEL_H
 
 #include <SFML/Graphics.hpp>
+#include "../classes/pie.h"
 #include "../classes/typeable.h"
 #include "../../view/background.h"
+#include "../../view/character.h"
 
 class Level {
     public:
@@ -14,6 +16,7 @@ class Level {
     private:
     unsigned int number;
     std::vector<Typeable> typeables;
+    Pie pie;
     Background background;
 };
 
