@@ -7,11 +7,13 @@
 class MenuState : public GameState {
     public:
     MenuState(const sf::RenderWindow &window);
-    void update(sf::Event &e) override;
+    GameAction update(sf::Event &e) override;
     void draw(sf::RenderWindow &window) override;
 
     private:
     Menu menu;
+    bool play = false;
+    bool exit = false;
 };
 
 #endif // MENU_STATE_H

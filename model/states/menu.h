@@ -9,12 +9,14 @@
 class Menu {
     public:
     Menu(const sf::RenderWindow &window);
+    bool isPlay() const;
+    bool isExit() const;
     void update(sf::Event &e);
     void draw(sf::RenderWindow &window);
 
     private:
-    Typeable play;
-    Typeable exit;
+    Typeable playTypeable;
+    Typeable exitTypeable;
     Text instructions;
     Background background;
 };

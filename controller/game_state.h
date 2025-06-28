@@ -3,10 +3,17 @@
 
 #include <SFML/Graphics.hpp>
 
+typedef enum {
+    NONE,
+    NEW_GAME,
+    LOAD_GAME,
+    EXIT_GAME
+} GameAction;
+
 class GameState {
     public:
     virtual ~GameState() = default;
-    virtual void update(sf::Event &e) = 0;
+    virtual GameAction update(sf::Event &e) = 0;
     virtual void draw(sf::RenderWindow &window) = 0;
 };
 

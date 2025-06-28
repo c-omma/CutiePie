@@ -21,7 +21,21 @@ void Game::update() {
             return;
         }
 
-        state->update(e);
+        GameAction action = state->update(e);
+        switch (action) {
+            case NEW_GAME:
+                level = 1;
+                // change to game state
+                break;
+            case LOAD_GAME:
+                // change to game state
+                break;
+            case EXIT_GAME:
+                this->quit();
+                return;
+            default:
+                break;
+        }
     }
 }
 

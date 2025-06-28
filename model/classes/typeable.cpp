@@ -81,6 +81,10 @@ void Typeable::centerHorizontally(const sf::RenderWindow& window) {
     this->setPosition(x, this->y);
 }
 
+bool Typeable::isDone() const {
+    return done;
+}
+
 void Typeable::checkTyping() {
     if (currentIndex >= text.size()) {
         if (!done) done = true;

@@ -7,22 +7,30 @@ Menu::Menu(const sf::RenderWindow &window)
     Typeable::setTextDoneColor(sf::Color(244, 164, 191));
     Typeable::setFontSize(72);
 
-    play = Typeable("Play", 0, 350);
-    play.centerHorizontally(window);
-    exit = Typeable("Exit", 0, 500);
-    exit.centerHorizontally(window);
+    playTypeable = Typeable("Play", 0, 350);
+    playTypeable.centerHorizontally(window);
+    exitTypeable = Typeable("Exit", 0, 500);
+    exitTypeable.centerHorizontally(window);
     instructions = Text("type to continue...", 0, 700, sf::Color(162, 166, 169), 38);
     instructions.centerHorizontally(window);
 }
 
+bool Menu::isPlay() const {
+    return playTypeable.isDone();
+}
+
+bool Menu::isExit() const {
+    return exitTypeable.isDone();
+}
+
 void Menu::update(sf::Event &e) {
-    play.checkTyping();
-    exit.checkTyping();
+    playTypeable.checkTyping();
+    exitTypeable.checkTyping();
 }
 
 void Menu::draw(sf::RenderWindow &window) {
     background.draw(window);
-    play.draw(window);
-    exit.draw(window);
+    playTypeable.draw(window);
+    exitTypeable.draw(window);
     instructions.draw(window);
 }
