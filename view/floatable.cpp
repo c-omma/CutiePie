@@ -4,7 +4,7 @@ const unsigned int Floatable::floatSpeed = 45;
 const float Floatable::floatStep = 5.0f;
 const float Floatable::floatAmplitude = 5.0f;
 
-Floatable::Floatable(float x, float y) : x(x), y(y), frameCounter(0), floatingUp(true), baseY(y), floatOffset(0) {}
+Floatable::Floatable(float x, float y, bool isFloating) : x(x), y(y), isFloating(isFloating), frameCounter(0), floatingUp(true), baseY(y), floatOffset(0) {}
 
 void Floatable::setPosition(float x, float y) {
     this->x = x;
@@ -18,7 +18,7 @@ void Floatable::setPosition(float x, float y) {
 }
 
 void Floatable::draw(sf::RenderWindow &window) {
-    floatUpdate();
+    if (this->isFloating) floatUpdate();
     drawFloatable(window);
 }
 

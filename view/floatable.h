@@ -5,9 +5,11 @@
 
 class Floatable {
     public:
-    Floatable(float x = 0, float y = 0);
+    Floatable(float x = 0, float y = 0, bool isFloating = true);
     virtual ~Floatable() = default;
     virtual void setPosition(float x, float y);
+    float getX() const { return x; }
+    float getY() const { return baseY; }
     void draw(sf::RenderWindow& window);
 
     protected:
@@ -17,6 +19,7 @@ class Floatable {
     float y;
 
     private:
+    bool isFloating;
     static const unsigned int floatSpeed; // how many frames between each float step
     static const float floatStep;
     static const float floatAmplitude;

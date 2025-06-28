@@ -1,6 +1,6 @@
 #include "level.h"
 
-Level::Level(const sf::RenderWindow &window, unsigned int number) : background("assets/images/sky.png", window), number(number) {
+Level::Level(const sf::RenderWindow &window, unsigned int number) : number(number), background("assets/images/sky.png", window) {
     Typeable::setTextColor(sf::Color(119, 127, 143));
     Typeable::setTextTypedColor(sf::Color(160, 124, 167));
     Typeable::setTextDoneColor(sf::Color(234, 114, 134));
