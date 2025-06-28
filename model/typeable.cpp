@@ -35,10 +35,10 @@ const sf::Color Typeable::textColor = sf::Color(255, 255, 255);
 const sf::Color Typeable::textTypedColor = sf::Color(0, 0, 255);
 const sf::Color Typeable::textDoneColor = sf::Color(255, 255, 0);
 
-Typeable::Typeable(const std::string& text, float x, float y) {
+Typeable::Typeable(const std::string& text, float x, float y) : Floatable(x, y) {
     this->text = text;
-    this->x = x;
-    this->y = y;
+    this->done = false;
+    this->currentIndex = 0;
 
     static bool fontLoaded = false;
     if (!fontLoaded) {
@@ -53,6 +53,11 @@ Typeable::Typeable(const std::string& text, float x, float y) {
     this->displayText.setCharacterSize(Typeable::fontSize);
     this->displayText.setFillColor(Typeable::textColor);
     this->displayText.setPosition(x, y);
+
+    this->typedText.setFont(Typeable::font);
+    this->typedText.setCharacterSize(Typeable::fontSize);
+    this->typedText.setFillColor(Typeable::textTypedColor);
+    this->typedText.setPosition(x, y);
 }
 
 std::string Typeable::getText() const {
@@ -65,30 +70,32 @@ void Typeable::setText(const std::string& text) {
     this->displayText.setString(text);
 }
 
+void Typeable::setPosition(float x, float y) {
+    Floatable::setPosition(x, y);
+    this->displayText.setPosition(x, y);
+    this->typedText.setPosition(x, y);
+}
+
 void Typeable::checkTyping() {
     if (currentIndex >= text.size()) {
         if (!done) done = true;
-        this->displayText.setFillColor(sf::Color::Green);
+        this->displayText.setFillColor(Typeable::textDoneColor);
         return;
     }
 
     auto it = Typeable::keys.find(text[currentIndex]);
     if (it == Typeable::keys.end()) return;
-    if (sf::Keyboard::isKeyPressed(it->second)) this->currentIndex++;
+    if (sf::Keyboard::isKeyPressed(it->second)) {
+        this->typedText.setString(text.substr(0, currentIndex + 1));
+        currentIndex++;
+    }
 }
 
-void Typeable::draw(sf::RenderWindow& window) const {
-    if (this->done) {
-        window.draw(displayText);
-        return;
-    }
-
-    sf::Text typedText;
-    typedText.setFont(Typeable::font);
-    typedText.setString(text.substr(0, currentIndex));
-    typedText.setCharacterSize(Typeable::fontSize);
-    typedText.setPosition(x, y);
-    typedText.setFillColor(Typeable::textTypedColor);
-    window.draw(displayText);
-    window.draw(typedText);
+void Typeable::drawFloatable(sf::RenderWindow &window) {
+    this->displayText.setPosition(this->x, this->y);
+    this->typedText.setPosition(this->x, this->y);
+    window.draw(this->displayText);
+    
+    if (this->done) return;
+    window.draw(this->typedText);
 }
