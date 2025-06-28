@@ -17,14 +17,13 @@ void Floatable::setPosition(float x, float y) {
     this->floatingUp = true;
 }
 
-void Floatable::draw(sf::RenderWindow &window) {
-    if (this->isFloating) floatUpdate();
-    drawFloatable(window);
+void Floatable::setFloating(bool floating) {
+    this->isFloating = floating;
 }
 
 void Floatable::floatUpdate() {
     this->frameCounter++;
-    
+
     if (this->frameCounter >= Floatable::floatSpeed) {
         this->frameCounter = 0;
 
@@ -42,4 +41,9 @@ void Floatable::floatUpdate() {
 
         this->y = this->baseY + this->floatOffset;
     }
+}
+
+void Floatable::draw(sf::RenderWindow &window) {
+    if (this->isFloating) this->floatUpdate();
+    drawFloatable(window);
 }

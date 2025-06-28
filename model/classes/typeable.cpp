@@ -111,6 +111,16 @@ void Typeable::setPosition(float x, float y) {
     typedText.setPosition(x, y);
 }
 
+void Typeable::setDone(bool done) {
+    this->done = done;
+    if (done) {
+        baseText = Text(text, this->x, this->y, Typeable::textDoneColor, Typeable::fontSize);
+    } else {
+        typedText.setContent("");
+        currentIndex = 0;
+    }
+}
+
 void Typeable::centerHorizontally(const sf::RenderWindow& window) {
     float x = baseText.centerHorizontally(window);
     this->setPosition(x, this->y);

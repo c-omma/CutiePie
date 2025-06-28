@@ -18,10 +18,10 @@ void Character::setPosition(float x, float y) {
     sprites[currentSpriteIndex].setPosition(x, y);
 }
 
-void Character::update() {
+void Character::update(sf::Event &e) {
     float x = this->x;
     float y = this->y;
-    updateSprite();
+    updateSprite(e);
     sprites[currentSpriteIndex].setPosition(x, y);
 }
 

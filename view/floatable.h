@@ -8,6 +8,7 @@ class Floatable {
     Floatable(float x = 0, float y = 0, bool isFloating = true);
     virtual ~Floatable() = default;
     virtual void setPosition(float x, float y);
+    void setFloating(bool floating);
     float getX() const { return x; }
     float getY() const { return baseY; }
     void draw(sf::RenderWindow& window);

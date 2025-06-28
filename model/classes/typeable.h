@@ -18,6 +18,7 @@ class Typeable: public Floatable {
     static void setTextDoneColor(const sf::Color& color);
     static void setFontSize(unsigned int size);
     void setPosition(float x, float y) override;
+    void setDone(bool done);
     void centerHorizontally(const sf::RenderWindow& window);
     bool isDone() const;
     void checkTyping();

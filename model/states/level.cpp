@@ -17,7 +17,7 @@ void Level::update(sf::Event &e) {
     for (auto &typeable : typeables) {
         typeable.checkTyping();
     }
-    pie.update();
+    pie.update(e);
 }
 
 void Level::draw(sf::RenderWindow &window) {

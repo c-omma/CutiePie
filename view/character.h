@@ -12,11 +12,11 @@ class Character : public Floatable {
     public:
     Character(float x, float y, const std::vector<std::vector<std::string>> &frames, const std::vector<unsigned int> frameSpeeds, bool isFloating = false);
     void setPosition(float x, float y) override;
-    virtual void update();
+    void update(sf::Event &e);
     
     protected:
     void drawFloatable(sf::RenderWindow& window) override;
-    virtual void updateSprite() = 0;
+    virtual void updateSprite(sf::Event &e) = 0;
     std::vector<AnimatedSprite> sprites;
     unsigned int currentSpriteIndex = 0;
 };

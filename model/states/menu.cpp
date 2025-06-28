@@ -26,6 +26,11 @@ bool Menu::isExit() const {
 void Menu::update(sf::Event &e) {
     playTypeable.checkTyping();
     exitTypeable.checkTyping();
+    if (e.type == sf::Event::KeyPressed) {
+        if (e.key.code == sf::Keyboard::Escape) {
+            exitTypeable.setDone(true);
+        }
+    }
 }
 
 void Menu::draw(sf::RenderWindow &window) {

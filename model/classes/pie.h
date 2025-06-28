@@ -14,7 +14,7 @@ class Pie : public Character {
     private:
     static std::vector<std::vector<std::string>> frames;
     static std::vector<unsigned int> frameSpeeds;
-    void updateSprite() override;
+    void updateSprite(sf::Event &e) override;
 };
 
 #endif // PIE_H
