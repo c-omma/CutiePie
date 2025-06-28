@@ -25,11 +25,11 @@ void Game::update() {
         switch (action) {
             case NEW_GAME:
                 level = 1;
-                // change to game state
-                break;
+                this->state = new LevelState(window, level);
+                return;
             case LOAD_GAME:
-                // change to game state
-                break;
+                this->state = new LevelState(window, level);
+                return;
             case EXIT_GAME:
                 this->quit();
                 return;

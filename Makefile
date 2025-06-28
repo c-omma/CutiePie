@@ -4,9 +4,9 @@ LIBS = -lsfml-graphics -lsfml-window -lsfml-system
 
 TARGET = cutie
 SOURCES = 	main.cpp \
-			controller/game.cpp controller/menu_state.cpp \
+			controller/game.cpp controller/level_state.cpp controller/menu_state.cpp \
 			model/classes/typeable.cpp \
-			model/states/menu.cpp \
+			model/states/level.cpp model/states/menu.cpp \
 			view/background.cpp view/floatable.cpp view/text.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 

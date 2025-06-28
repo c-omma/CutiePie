@@ -2,16 +2,18 @@
 #define LEVEL_STATE_H
 
 #include <SFML/Graphics.hpp>
-#include "../model/typeable.h"
+#include "game_state.h"
+#include "../model/classes/typeable.h"
+#include "../model/states/level.h"
 
-class LevelState {
+class LevelState: public GameState {
     public:
-    LevelState();
-    void update(sf::Event &e);
+    LevelState(const sf::RenderWindow &window, unsigned int levelNumber);
+    GameAction update(sf::Event &e);
     void draw(sf::RenderWindow &window);
 
     private:
-    Typeable hello;
+    Level level;
 };
 
 #endif // LEVEL_STATE_H

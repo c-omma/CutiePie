@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
+#include "level_state.h"
 #include "menu_state.h"
 
 class Game {
