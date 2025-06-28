@@ -35,6 +35,12 @@ const sf::Color Typeable::textColor = sf::Color(255, 255, 255);
 const sf::Color Typeable::textTypedColor = sf::Color(0, 0, 255);
 const sf::Color Typeable::textDoneColor = sf::Color(255, 255, 0);
 
+Typeable::Typeable() {
+    this->text = "";
+    this->x = 0;
+    this->y = 0;
+}
+
 Typeable::Typeable(const std::string& text, float x, float y) {
     this->text = text;
     this->x = x;

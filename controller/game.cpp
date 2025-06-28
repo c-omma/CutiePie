@@ -25,7 +25,9 @@ void Game::update() {
 }
 
 void Game::draw() {
+    window.clear();
     state->draw(this->window);
+    window.display();
 }
 
 void Game::quit() {

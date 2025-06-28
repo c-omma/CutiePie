@@ -7,6 +7,7 @@
 
 class Typeable {
     public:
+    Typeable();
     Typeable(const std::string& text, float x = 0, float y = 0);
     std::string getText() const;
     void setText(const std::string& text);

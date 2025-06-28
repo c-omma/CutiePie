@@ -1,15 +1,13 @@
 #include "menu_state.h"
 
-MenuState::MenuState() {
-    // Initialize menu state
+MenuState::MenuState(){
+    hello = Typeable("Hello, World!", 700, 200);
 }
 
 void MenuState::update(sf::Event &e) {
-    // Handle menu state events
-    if (e.type == sf::Event::Closed) {
-        // Handle window close event
-    }
+    hello.checkTyping();
 }
 
 void MenuState::draw(sf::RenderWindow &window) {
+    hello.draw(window);
 }

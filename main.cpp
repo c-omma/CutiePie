@@ -6,7 +6,6 @@
 
 int main() {
     Game game;
-    Typeable hello("Hello, World!", 700, 200);
 
     while (game.isRunning()) {        
         game.update();
