@@ -29,12 +29,31 @@ const std::map<char, sf::Keyboard::Key> Typeable::keys = {
     {'.', sf::Keyboard::Period}, {'!', sf::Keyboard::Num1}, {'-', sf::Keyboard::Dash}
 };
 
+sf::Music Typeable::keySound;
+sf::Music Typeable::lastKeySound;
+
 sf::Color Typeable::textColor = sf::Color(255, 255, 255);
 sf::Color Typeable::textTypedColor = sf::Color(0, 0, 255);
 sf::Color Typeable::textDoneColor = sf::Color(255, 255, 0);
 unsigned int Typeable::fontSize = 32;
 
 Typeable::Typeable() {
+    static bool keySoundLoaded = false;
+    if (!keySoundLoaded) {
+        if (!Typeable::keySound.openFromFile("assets/audio/key.mp3")) {
+            throw std::runtime_error("Typeable: Failed to load key sound");
+        }
+        keySoundLoaded = true;
+    }
+
+    static bool lastKeySoundLoaded = false;
+    if (!lastKeySoundLoaded) {
+        if (!Typeable::lastKeySound.openFromFile("assets/audio/ping.mp3")) {
+            throw std::runtime_error("Typeable: Failed to load last key sound");
+        }
+        lastKeySoundLoaded = true;
+    }
+
     this->text = "";
     this->x = 0;
     this->y = 0;
@@ -46,6 +65,22 @@ Typeable::Typeable() {
 }
 
 Typeable::Typeable(const std::string& text, float x, float y) : Floatable(x, y) {
+    static bool keySoundLoaded = false;
+    if (!keySoundLoaded) {
+        if (!Typeable::keySound.openFromFile("assets/audio/key.mp3")) {
+            throw std::runtime_error("Typeable: Failed to load key sound");
+        }
+        keySoundLoaded = true;
+    }
+
+    static bool lastKeySoundLoaded = false;
+    if (!lastKeySoundLoaded) {
+        if (!Typeable::lastKeySound.openFromFile("assets/audio/ping.mp3")) {
+            throw std::runtime_error("Typeable: Failed to load last key sound");
+        }
+        lastKeySoundLoaded = true;
+    }
+
     this->text = text;
     this->done = false;
     this->currentIndex = 0;
@@ -97,6 +132,11 @@ void Typeable::checkTyping() {
     if (sf::Keyboard::isKeyPressed(it->second)) {
         typedText.setContent(text.substr(0, currentIndex + 1));
         currentIndex++;
+        if (currentIndex == text.size()) {
+            Typeable::lastKeySound.play();
+        } else {
+            Typeable::keySound.play();
+        }
     }
 }
 

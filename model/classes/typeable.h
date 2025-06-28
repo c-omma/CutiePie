@@ -5,6 +5,7 @@
 #include "../../view/text.h"
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio/Music.hpp>
 #include <string>
 #include <map>
 
@@ -23,6 +24,8 @@ class Typeable: public Floatable {
 
     private:
     static const std::map<char, sf::Keyboard::Key> keys;
+    static sf::Music keySound;
+    static sf::Music lastKeySound;
     static sf::Color textColor;
     static sf::Color textTypedColor;
     static sf::Color textDoneColor;

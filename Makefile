@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra
-LIBS = -lsfml-graphics -lsfml-window -lsfml-system
+LIBS = -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 
 TARGET = cutie
 SOURCES = 	main.cpp \
