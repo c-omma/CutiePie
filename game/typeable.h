@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
-#include <vector>
 #include <map>
 
 class Typeable {
@@ -24,10 +23,11 @@ class Typeable {
     static sf::Font font;
     static const sf::Color textColor;
     static const sf::Color textTypedColor;
+    static const sf::Color textDoneColor;
     sf::Text displayText;
     std::string text;
-    std::vector<bool> typed;
     unsigned int currentIndex = 0;
+    bool done = false;
     float x;
     float y;
 };

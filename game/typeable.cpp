@@ -26,17 +26,17 @@ const std::map<char, sf::Keyboard::Key> Typeable::keys = {
     {'6', sf::Keyboard::Num6}, {'7', sf::Keyboard::Num7},
     {'8', sf::Keyboard::Num8}, {'9', sf::Keyboard::Num9},
     {' ', sf::Keyboard::Space}, {',', sf::Keyboard::Comma},
-    {'.', sf::Keyboard::Period}, {'!', sf::Keyboard::Num1}
+    {'.', sf::Keyboard::Period}, {'!', sf::Keyboard::Num1}, {'-', sf::Keyboard::Dash}
 };
 
 sf::Font Typeable::font;
 
 const sf::Color Typeable::textColor = sf::Color(255, 255, 255);
 const sf::Color Typeable::textTypedColor = sf::Color(0, 0, 255);
+const sf::Color Typeable::textDoneColor = sf::Color(255, 255, 0);
 
 Typeable::Typeable(const std::string& text, float x, float y) {
     this->text = text;
-    this->typed = std::vector<bool>(text.size(), false);
     this->x = x;
     this->y = y;
 
@@ -61,20 +61,28 @@ std::string Typeable::getText() const {
 
 void Typeable::setText(const std::string& text) {
     this->text = text;
-    this->typed = std::vector<bool>(text.size(), false);
     this->currentIndex = 0;
     this->displayText.setString(text);
 }
 
 void Typeable::checkTyping() {
-    if (currentIndex >= text.size()) return;
+    if (currentIndex >= text.size()) {
+        if (!done) done = true;
+        this->displayText.setFillColor(sf::Color::Green);
+        return;
+    }
 
     auto it = Typeable::keys.find(text[currentIndex]);
     if (it == Typeable::keys.end()) return;
-    if (sf::Keyboard::isKeyPressed(it->second)) this->typed[this->currentIndex++] = true;
+    if (sf::Keyboard::isKeyPressed(it->second)) this->currentIndex++;
 }
 
 void Typeable::draw(sf::RenderWindow& window) const {
+    if (this->done) {
+        window.draw(displayText);
+        return;
+    }
+    
     sf::Text typedText;
     typedText.setFont(Typeable::font);
     typedText.setString(text.substr(0, currentIndex));
