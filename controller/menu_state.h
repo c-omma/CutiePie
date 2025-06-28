@@ -2,7 +2,6 @@
 #define MENU_STATE_H
 
 #include "game_state.h"
-#include "../model/typeable.h"
 
 class MenuState : public GameState {
     public:
@@ -11,7 +10,6 @@ class MenuState : public GameState {
     void draw(sf::RenderWindow &window) override;
 
     private:
-    Typeable hello;
 };
 
 #endif // MENU_STATE_H

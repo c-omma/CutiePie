@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "menu_state.h"
-#include "../model/typeable.h"
 
 class Game {
     public:

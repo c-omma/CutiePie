@@ -4,7 +4,6 @@
 
 #include "utils.h"
 #include "controller/game.h"
-#include "model/typeable.h"
 
 int main() {
     Game game;

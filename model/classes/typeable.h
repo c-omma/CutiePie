@@ -1,8 +1,8 @@
 #ifndef TYPEABLE_H
 #define TYPEABLE_H
 
-#include "../view/floatable.h"
-#include "../view/text.h"
+#include "../../view/floatable.h"
+#include "../../view/text.h"
 
 #include <SFML/Graphics.hpp>
 #include <string>
