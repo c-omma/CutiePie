@@ -1,0 +1,24 @@
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra
+LIBS = -lsfml-graphics -lsfml-window -lsfml-system
+
+TARGET = cutie
+SOURCES = main.cpp
+OBJECTS = $(SOURCES:.cpp=.o)
+
+all: $(TARGET)
+	
+$(TARGET): $(OBJECTS)
+	$(CXX) $(OBJECTS) -o $(TARGET) $(LIBS)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) $(TARGET)
+
+# Run the program
+run: $(TARGET)
+	./$(TARGET)
+
+.PHONY: all clean run
